@@ -79,10 +79,10 @@ Os seguintes endpoints estão disponíveis:
 
 | Método | URL                                                     | Descrição                                                                     |
 |--------|---------------------------------------------------------|-------------------------------------------------------------------------------|
-| GET    | http://200.236.3.126:3000/scoreboards/{GRR}/scores      | Lista pontuações salvas para o GRR informado com o jogo no modo normal.       |
-| GET    | http://200.236.3.126:3000/scoreboards/{GRR}/timedscores | Lista pontuações salvas para o GRR informado com o jogo no modo temporizado.  |
-| POST   | http://200.236.3.126:3000/scoreboards/{GRR}/scores      | Salva uma nova pontuação para o GRR informado com o jogo no modo normal.      |
-| POST   | http://200.236.3.126:3000/scoreboards/{GRR}/timedscores | Salva uma nova pontuação para o GRR informado com o jogo no modo temporizado. |
+| GET    | http://200.236.3.126:9999/scoreboards/{GRR}/scores      | Lista pontuações salvas para o GRR informado com o jogo no modo normal.       |
+| GET    | http://200.236.3.126:9999/scoreboards/{GRR}/timedscores | Lista pontuações salvas para o GRR informado com o jogo no modo temporizado.  |
+| POST   | http://200.236.3.126:9999/scoreboards/{GRR}/scores      | Salva uma nova pontuação para o GRR informado com o jogo no modo normal.      |
+| POST   | http://200.236.3.126:9999/scoreboards/{GRR}/timedscores | Salva uma nova pontuação para o GRR informado com o jogo no modo temporizado. |
 
 Exemplo:
 
