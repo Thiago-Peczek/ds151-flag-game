@@ -43,6 +43,8 @@ A aplicação ainda possui uma tela para exibição do placar de pontuação par
 ![Tela Acerto com Tempo](images/hit_timed.png)
 ![Tela Erro com Tempo](images/miss_timed.png)
 ![Tela Fim de Jogo com Tempo](images/end_timed.png)
+![Tela_Pontuacao_1](images/score1.png)
+![Tela_Pontuacao_2](images/score2.png)
 
 ## Imagens das bandeiras
 
