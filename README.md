@@ -136,3 +136,7 @@ Após, clone o projeto e execute o seguinte:
 npm install
 expo start
 ```
+
+```
+npm install @react-navigation/material-top-tabs react-native-tab-view
+```
