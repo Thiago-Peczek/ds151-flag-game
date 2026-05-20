@@ -13,6 +13,10 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "scheme": "ds151-flag-game",
+    "plugins": [
+      "expo-router"
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],

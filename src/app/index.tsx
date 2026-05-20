@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { useRouter } from 'expo-router';
 
-const HomeScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
+const HomeScreen = () => {
+  const [username, setUsername] = useState<string>('');
+  const router = useRouter();
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Bem-vindo</Text>
@@ -16,18 +19,18 @@ const HomeScreen = ({ navigation }) => {
         <Button 
           title="Iniciar"
           color="#0a0"
-          width={200}
           disabled={username === ''}
-          onPress={ () => {
-            navigation.navigate("Game", {
-              username: username
-            })
+          onPress={() => {
+            router.push({
+              pathname: '/game',
+              params: { username: username }
+            });
           }}
         />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
