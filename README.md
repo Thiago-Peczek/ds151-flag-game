@@ -89,7 +89,7 @@ A API estará rodando em `http://localhost:3000`.
 
 ## 🛠️ Recursos Fornecidos
 
-**1. O Hook `useCronometro**`
+**1. O Hook `useCronometro`**
 Para facilitar a implementação da Etapa 3, o arquivo `src/hooks/useCronometro.ts` já exporta a lógica de tempo. Exemplo de uso:
 
 ```javascript
