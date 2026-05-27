@@ -4,38 +4,46 @@ import { useRouter } from 'expo-router';
 
 import { buscarPlacarNormal, buscarPlacarTemporizado } from '../services/jsonServer';
 
-const data = {
-    name: "Nome",
-    score: "8"
+type placarType = {
+    id: string;
+    name: string;
+    score: string;
 }
+
+
 
 const placar = () => {
     const router = useRouter();
     const [tipoPlacar, setTipoPlacar] = useState<number>(1);
-    const [placar, setPlacar] = useState<string[]>([]);
+    const [placar, setPlacar] = useState<placarType[]>([]);
+    const [placarOrdenado, setPlacarOrdenado] = useState<placarType[]>([]);
+
+    const getPlacar = async () => {
+        if(tipoPlacar == 1){
+            const busca = await buscarPlacarNormal();
+            console.log(busca);
+            setPlacar(busca);
+        } else {
+
+            const busca = await buscarPlacarTemporizado();
+            console.log(busca)
+            setPlacar(busca);
+        }
+    } 
 
     useEffect(()=>{
-        if(tipoPlacar == 1){
-            const busca = buscarPlacarNormal();
-            console.log(busca);
-        } else {
-            const busca = buscarPlacarTemporizado();
-            console.log(busca);
-        }
-
+        getPlacar();
     }, [tipoPlacar]);
     
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerTitle}>
-                    <Pressable style={styles.HeaderButtons} onPress={() => {
+                   <Button title="Voltar" color="rgb(12, 120, 252)" onPress={() => {
                         router.push({
                         pathname: '/',
                         });
-                    }}>
-                        <Text>Voltar</Text>
-                        </Pressable>
+                    }}/>
                     <Text>
                         Placar
                     </Text>
@@ -52,11 +60,11 @@ const placar = () => {
             <View>
                 <FlatList
                 data={placar}
-                //keyExtractor={item=>item.id}
+                keyExtractor={(item)=>item.id}
                 renderItem={({item}) => 
-                    <View>
-                        <Text>item.name</Text>
-                        <Text>item.score</Text>
+                    <View style={styles.itemPlacar}>
+                        <Text>{item.name}</Text>
+                        <Text>{item.score}</Text>
                     </View>}
                     />
             </View>
@@ -66,10 +74,8 @@ const placar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-start',
   },
   header: {
     fontSize: 50,
@@ -82,12 +88,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexDirection: 'row',
   },
-  HeaderButtons: {
-    fontSize: 24,
-    backgroundColor: "#008",
-    fontFamily: 'monospace',
-    color: "#fff",
-  },
   placar: {
     borderWidth: 2,
     margin: 20,
@@ -98,6 +98,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'monospace'
   },
+  itemPlacar: {
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+  }
 });
 
 

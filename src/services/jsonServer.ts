@@ -4,15 +4,18 @@ export const buscarPlacarNormal = async () => {
     try {
         const response = await api.get('/scores');
         console.log(response.data.results);
+        return response.data;
     } catch (error) {
         console.error('Falha na requisição:', error);
     }
+
 }
 
 export const buscarPlacarTemporizado = async () => {
     try {
         const response = await api.get('/timedscores');
         console.log(response.data.results);
+        return response.data;
     } catch (error) {
         console.error('Falha na requisição:', error);
     }
