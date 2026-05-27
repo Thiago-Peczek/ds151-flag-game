@@ -7,9 +7,12 @@ import { countries } from '../data/countries';
 import _ from '../../underscore-esm-min';
 
 import { GameHeader } from '../components/GameHeader';
+
+import { GameTimedHeader } from '../components/GameTimedHeader';
 import { FlagQuestion } from '../components/FlagQuestion';
 import { OptionButton } from '../components/OptionButton';
 import { FeedbackScreen } from '../components/FeedbackScreen';
+import { useCronometro } from '../hooks/useCronometro';
 
 interface Country {
   name: string;
@@ -21,6 +24,7 @@ type GameStatus = 'question' | 'hit' | 'miss' | 'end';
 const GameScreen = () => {
   const [points, setPoints] = useState<number>(0);
   const [step, setStep] = useState<number>(1);
+  const [ timeout, setTimeout ] = useState<number>(30)
   const [status, setStatus] = useState<GameStatus>('question');
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [options, setOptions] = useState<Country[]>([]);
@@ -28,6 +32,7 @@ const GameScreen = () => {
   
   const router = useRouter();
   const { username } = useLocalSearchParams<{ username: string }>();
+  const { StatusTime } = useLocalSearchParams<{ StatusTime: string }>();
 
   const nextStep = () => {
     if (step > 10) setStatus('end');
@@ -35,7 +40,8 @@ const GameScreen = () => {
     setChosenOption(-1);
   }
 
-  const confirmTry = () => {
+
+    const confirmTry = () => {
     if (selectedCountry && options[chosenOption] && selectedCountry.name === options[chosenOption].name) {
       setPoints((p) => p + 1)
       setStatus('hit')
@@ -79,8 +85,44 @@ const GameScreen = () => {
   }
 
   if (!selectedCountry) return (<Text>Carregando ...</Text>)
+  
+  if (StatusTime == "Timed") return (
+      <SafeAreaView style={styles.container}>
+      <GameTimedHeader 
+        onClose={() => router.replace('/')}
+        step={step}
+        points={points}
 
-  return (
+      />
+      
+      <FlagQuestion 
+        username={username || 'Jogador'}
+        countryCode={selectedCountry.code}
+      />
+
+      <View style={styles.optionsContainer}>
+        {options.map((option, idx) => (
+          <OptionButton
+            key={idx}
+            label={option.name}
+            isSelected={idx === chosenOption}
+            onPress={() => setChosenOption(idx)}
+          />
+        ))}
+      </View>
+
+      <View style={styles.confirmContainer}>
+        <Button
+          title="Confirmar"
+          color="green"
+          disabled={chosenOption === -1}
+          onPress={confirmTry}
+        />
+      </View>
+    </SafeAreaView> 
+  )
+
+  if (StatusTime == "notTimed") return(
     <SafeAreaView style={styles.container}>
       <GameHeader 
         onClose={() => router.replace('/')}
@@ -111,10 +153,13 @@ const GameScreen = () => {
           disabled={chosenOption === -1}
           onPress={confirmTry}
         />
-      </View>
+      </View> 
     </SafeAreaView>
   );
+
+
 }
+
 
 const styles = StyleSheet.create({
   container: {

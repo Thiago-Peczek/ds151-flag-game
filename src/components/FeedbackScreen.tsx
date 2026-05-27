@@ -3,8 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
-type Status = 'hit' | 'miss' | 'end';
+type Status = 'hit' | 'miss' | 'timeout' | 'end';
 
 interface FeedbackScreenProps {
   status: Status;
@@ -21,7 +20,7 @@ export const FeedbackScreen = ({
   points,
   onContinue,
   onRestart,
-  onQuit
+  onQuit,
 }: FeedbackScreenProps) => {
   if (status === 'end') {
     return (
@@ -43,7 +42,8 @@ export const FeedbackScreen = ({
     );
   }
 
-  const isHit = status === 'hit';
+  const isHit = status == 'hit';
+  const TimeOut = status == 'timeout';
   const containerStyle = isHit ? styles.hitContainer : styles.missContainer;
   const iconName = isHit ? 'check' : 'close';
   const buttonColor = isHit ? 'green' : 'red';
