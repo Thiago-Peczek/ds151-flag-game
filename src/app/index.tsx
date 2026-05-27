@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 
 const HomeScreen = () => {
   const [username, setUsername] = useState<string>('');
+  const [StatusTime, setStatusTime ] = useState<string>("notTimed");
   const router = useRouter();
 
   return (
@@ -16,14 +17,31 @@ const HomeScreen = () => {
           value={username}
           onChangeText={(t) => setUsername(t)}
         />
-        <Button 
+         <Button 
           title="Iniciar"
           color="#0a0"
           disabled={username === ''}
           onPress={() => {
+            setStatusTime("notTimed"),
             router.push({
               pathname: '/game',
-              params: { username: username }
+              params: { username: username,
+                        StatusTime: "notTimed"
+               }
+            });
+          }}
+        />
+          <Button 
+          title="Iniciar Temporizador"
+          color="#0a0"
+          disabled={username === ''}
+          onPress={() => {
+            setStatusTime("Timed"),
+            router.push({
+              pathname: '/game',
+              params: { username: username,
+                        StatusTime: "Timed"
+               }
             });
           }}
         />
