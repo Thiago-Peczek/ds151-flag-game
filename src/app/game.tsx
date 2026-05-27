@@ -10,7 +10,6 @@ import { GameHeader } from '../components/GameHeader';
 import { FlagQuestion } from '../components/FlagQuestion';
 import { OptionButton } from '../components/OptionButton';
 import { FeedbackScreen } from '../components/FeedbackScreen';
-import { salvarPlacarNormal } from '../services/jsonServer';
 
 interface Country {
   name: string;
@@ -31,12 +30,7 @@ const GameScreen = () => {
   const { username } = useLocalSearchParams<{ username: string }>();
 
   const nextStep = () => {
-    if (step > 10){
-      const data = {name: username, score: points};
-      const busca = salvarPlacarNormal(data);
-      setStatus('end');
-      console.log(busca);
-    }
+    if (step > 10) setStatus('end');
     else setStatus('question');
     setChosenOption(-1);
   }
