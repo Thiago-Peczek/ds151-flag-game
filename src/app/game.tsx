@@ -6,6 +6,8 @@ import { countries } from '../data/countries';
 // @ts-ignore
 import _ from '../../underscore-esm-min';
 
+import { salvarPlacarNormal, salvarPlacarTemporizado } from '../services/jsonServer';
+
 import { GameHeader } from '../components/GameHeader';
 import { FlagQuestion } from '../components/FlagQuestion';
 import { OptionButton } from '../components/OptionButton';
@@ -14,6 +16,12 @@ import { FeedbackScreen } from '../components/FeedbackScreen';
 interface Country {
   name: string;
   code: string;
+}
+
+type placarType = {
+    id: string;
+    name: string;
+    score: string;
 }
 
 type GameStatus = 'question' | 'hit' | 'miss' | 'end';
@@ -29,8 +37,15 @@ const GameScreen = () => {
   const router = useRouter();
   const { username } = useLocalSearchParams<{ username: string }>();
 
-  const nextStep = () => {
-    if (step > 10) setStatus('end');
+  const nextStep = async () => {
+    if (step > 10) {
+      setStatus('end');
+      const result = {
+        name: username,
+        score: points,
+      }
+      await salvarPlacarNormal(result);
+    } 
     else setStatus('question');
     setChosenOption(-1);
   }

@@ -10,8 +10,6 @@ type placarType = {
     score: string;
 }
 
-
-
 const placar = () => {
     const router = useRouter();
     const [tipoPlacar, setTipoPlacar] = useState<number>(1);
@@ -23,11 +21,13 @@ const placar = () => {
             const busca = await buscarPlacarNormal();
             console.log(busca);
             setPlacar(busca);
+            placar.sort((a, b) => Number(a.score) - Number(b.score));
         } else {
 
             const busca = await buscarPlacarTemporizado();
             console.log(busca)
             setPlacar(busca);
+            placar.sort((a, b) => Number(a.score) - Number(b.score));
         }
     } 
 
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace'
   },
   itemPlacar: {
+    padding: 12,
     justifyContent: 'flex-start',
     flexDirection: 'row',
   }
