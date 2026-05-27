@@ -7,7 +7,7 @@ const HomeScreen = () => {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.welcome}>Bem-vindo</Text>
       <View style={styles.container_name}>
         <Text style={styles.labelName}>Digite seu nome</Text>
@@ -24,6 +24,15 @@ const HomeScreen = () => {
             router.push({
               pathname: '/game',
               params: { username: username }
+            });
+          }}
+        />
+        <Button 
+          title="Placar"
+          color="#0a0"
+          onPress={() => {
+            router.push({
+              pathname: '/placar'
             });
           }}
         />
@@ -47,6 +56,7 @@ const styles = StyleSheet.create({
   },
   container_name: {
     justifyContent: 'center',
+    gap: 10,
   },
   labelName: {
     fontSize: 30,

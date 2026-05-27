@@ -1,4 +1,56 @@
 {
-  "scores": [],
-  "timedscores": []
+  "scores": [
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "xurHtBD-wgE"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "oVQ2GxF7Byk"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "Tub7lZqMPaI"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "Gmu2EQB0lG8"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "sTzNR0kqUsg"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "jUvBnYg7syM"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "yoo1K0wKTyc"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "4H48qW_tu40"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "mJvqVnykgnI"
+    },
+    {
+      "name": "Nome",
+      "score": "8",
+      "id": "cQq95cM_R8Y"
+    }
+  ],
+  "timedscores": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }

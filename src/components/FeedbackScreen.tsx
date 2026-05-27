@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+
 type Status = 'hit' | 'miss' | 'end';
 
 interface FeedbackScreenProps {
